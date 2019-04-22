@@ -1,0 +1,15 @@
+[package]
+name = "rust_python"
+version = "0.1.0"
+authors = ["zhoujun <572459439@qq.com>"]
+edition = "2018"
+
+[dependencies]
+
+[lib]
+name = "edit_distence_rust" # 最终生存的so文件命名为 "lib{name}.so"
+crate-type = ["dylib"]
+
+[dependencies.cpython]
+version = "*"
+features = ["extension-module"]
