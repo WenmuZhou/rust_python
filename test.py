@@ -6,7 +6,15 @@ print(dir(edit_distence_rust))
 tic = time.time()
 for i in range(270000):
     dis = edit_distence_rust.edit_distance('我的中国心1', '别人也是调用的底层C文件吧')
-print('我的rust cython so:', time.time()-tic, dis)
+print('我的 rust cython so:', time.time()-tic, dis)
+
+import ctypes
+so = ctypes.CDLL('edit_distence_rust.so')
+tic = time.time()
+for i in range(270000):
+    dis = so.edit_distance_so('我的中国心'.encode(
+        'utf8'), '别人也是调用的底层C文件吧'.encode('utf8'))
+print('我的 rust ctypes so:', time.time()-tic, dis)
 
 import Levenshtein
 tic = time.time()
